@@ -1,27 +1,4 @@
 # -*- coding: utf-8 -*-
-#||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-#SCRIPT PARA EXTARER LOS ENLACES DE UNA BUSQUEDA EN GOOGLE,BING,YAHOO.
-#AUTOR: GABO
-
-#||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-
-
-#####################     #####################	 #####################   #####################   ###                 #################
-###						  ###  			    ###  ###               ###   ###					 ###                 ###
-###						  ###  			    ###	 ###               ###   ###					 ###                 ### 
-###						  ###     		    ###	 ###               ###   ###					 ###                 ### 
-###         #########     ###     		    ###	 ###               ###   ###         #########   ###                 ################
-###               ###     ###     		    ###	 ###               ###   ###               ###   ###                 ### 
-###               ###	  ###     		    ###	 ###               ###   ###               ###   ###                 ### 
-###               ###     ###    		    ###	 ###               ###   ###               ###   ###                 ### 
-###               ###     ###     		    ###	 ###               ###   ###               ###   ###                 ### 
-#####################     #####################  #####################   #####################   #################   #################
-
-
-
-###################################################################################################
 
 from mechanize import Browser
 from bs4 import BeautifulSoup
@@ -30,7 +7,6 @@ import unicodedata
 import encodings
 import os,sys
 
-###################################################################################################
 busc=raw_input('QUE DESEAS BUSCAR?'+'\n')
 
 inicio1=timeit.default_timer()
@@ -70,23 +46,10 @@ for b1 in obag:
 
 principal=''
 
-##############################################################################################
-# EXTRAER TODOS LINKS DE LA INFORMACION  RECIBIDA
-##############################################################################################
-
-
 soup = BeautifulSoup(br.response().read())
 for i,link in enumerate(soup.find_all('a')):
     principal=principal+(str(link.get('href'))+'\n')
 
-
-
-################################################################################################
-
-
-#algoritmo para extraer las paginas del 1 al 10 de el resultado de la busqueda + enlace de imagenes
-
-################################################################################################
 duno=0
 for x in principal:
 	if x=='\n':
@@ -286,9 +249,7 @@ for y10 in principal:
 	if d3==1:
 		break
 
-################################################################################################
-#EXTRACCION DE CADA STODOS LOS ENLACES PERTENECIENTES A LAS PAGINAS 1,2,3,4,ETC......
-################################################################################################
+
 googlepaginas=['']*20
 googlepagina1=''
 googlepagina2=''
@@ -394,12 +355,6 @@ for j,hit in enumerate(soup1.findAll(attrs={'class' : 'r'})):
 						for x in range(1,(sab3+1)):
 							ch=''
 						break
-
-
-			
-
-
-		#print str(comparador)+'\n'		
 		
 				
 			
@@ -464,11 +419,7 @@ for i in range(0,20):
 			harr1=0
 			break
 
-	
-#print googlepaginas[:]
 print googlepaginasfin[:]
-#print d
-
 
 tit=''
 num=0
@@ -482,7 +433,6 @@ sapeo=0
 gab=''
 for hit in enumerate(soup1.findAll(attrs={'class' : 'r'})):
 	try:
-		#print str(hit)+'\n'
 		for x in str(hit):
 			tit=tit+x
 			num=num+1
@@ -508,15 +458,10 @@ for hit in enumerate(soup1.findAll(attrs={'class' : 'r'})):
 				control=0
 			if control==1 and a!='>':
 				salida=salida+a
-		#print salida
 		pap=0
 		guarda=''
 		mmm=''
-		qqq=unicode('imágene','utf-8')
-		
-		
-		
-		
+		qqq=unicode('imágene','utf-8')		
 		for go in salida:
 			pap=pap+1
 			guarda=guarda+go
@@ -524,8 +469,7 @@ for hit in enumerate(soup1.findAll(attrs={'class' : 'r'})):
 				
 				mmm=guarda.lower()
 				nnn=unicode(mmm,'utf-8')
-				#unicodedata.normalize('NFKD', nnn).encode('ascii','ignore')
-				
+								
 				if nnn==qqq:
 					gab=gab+str(ermest)
 
@@ -559,8 +503,7 @@ branigan=0
 for hit in enumerate(soup1.findAll(attrs={'class' : 'st'})):
 
 	try:
-		#print str(hit)+'\n'
-		
+			
 		for c in str(hit):
 			if c=='>':
 				control1=1
@@ -568,8 +511,6 @@ for hit in enumerate(soup1.findAll(attrs={'class' : 'st'})):
 				control1=0
 			if control1==1 and c!='>' and c!='<' and c!=')':
 				salida1=salida1+c
-
-		#print salida1+'\n'
 
 		
 		googletextos[branigan]=str(salida1)
@@ -612,61 +553,21 @@ else:
 
 
 print '\n'
-#print googletextos[:]
-#print '\n'*5
 print googletextosfin[:]
-				
-
-
-###########################################################################################
-#algoritmo final para extraer todos los enlaces validos de las 10 paginas
-###########################################################################################
 print '\n'
 print 'BUSCANDO EN bing|||||||||||||||||||||||||||||||||||||||||||||||||||||||'+('\n'*3)
 
-
-
-
-#####################################################################################################
-#####################################################################################################
-#####################################################################################################
-
-########################    ######     ######                  ######       ########################
-######               ###    ######     ############            ######       ######
-######               ###    ######     ######   ######         ######	    ######
-########################    ######     ######      ######      ######		######
-######               ###    ######     ######         ######   ###### 		######      ############
-######               ###    ######     ######            ############		######            ######
-######               ###    ######     ######               #########       ######            ######
-########################    ######     ######                  ######		########################
-
-#####################################################################################################
-#####################################################################################################
-#####################################################################################################
-
-
 br.open( "http://bing.com" )
-
 br.select_form( nr=0 )
 br.form[ 'q' ] = obag
-
 br.submit()
-
-
 binghtml=''
-##############################################################################################
-# EXTRAER TODOS LINKS DE LA INFORMACION  RECIBIDA
-##############################################################################################
-
 inicio1=timeit.default_timer()
 soup = BeautifulSoup(br.response().read())
 
 for i,link in enumerate(soup.find_all('a')):
 
     binghtml=binghtml+(str(link.get('href'))+'\n')
-
-############################################################################################
-
 
 a=''
 
@@ -675,20 +576,12 @@ for mod in obag:
 		a=a+'+'
 	else:
 		a=a+mod
-#print a
-
-
-
 lin1='/search?q='+a+'&go=&qs=ds&lf=1&qpvt='+a
 lin2='/search?q='+a+'&go=&qs=ds&first=11&FORM=PERE'
 lin3='/search?q='+a+'&go=&qs=ds&first=21&FORM=PERE1'
 lin4='/search?q='+a+'&go=&qs=ds&first=31&FORM=PERE2'
 lin5='/search?q='+a+'&go=&qs=ds&first=41&FORM=PERE3'
 lin6='/images/search?q='+a+'&FORM=HDRSC2'
-
-
-
-
 bingpagina1=''
 bingpagina2=''
 bingpagina3=''
@@ -731,28 +624,13 @@ for lin in binghtml:
 	else:
 		euro=euro+lin
 			
-
-
-#print '1'+bingpagina1
-#print '2'+bingpagina2
-#print '3'+bingpagina3
-#print '4'+bingpagina4
-#print '5'+bingpagina5
-#print '6'+bingimagenes
-
-
 bingpaginas=['']*20
 bingtitulos=['']*20
 bingtextos=['']*20
-
-
-
 br.open('http://bing.com'+bingpagina1)
 soup1 = BeautifulSoup(br.response().read())
 relog=0
 for link in soup1.findAll(attrs={'class' : "b_algo"}):
-
-	#print '_________________________________________________________'
 	try:
 		
 
@@ -767,7 +645,7 @@ for link in soup1.findAll(attrs={'class' : "b_algo"}):
 			if bingcont==3 and guf!='"':
 				bingpag=bingpag+guf
 			if bingcont==4:
-				#print bingpag
+				
 				bingpaginas[relog]=bingpag
 				break
 
@@ -781,11 +659,8 @@ for link in soup1.findAll(attrs={'class' : "b_algo"}):
 				aut=0
 			if aut==1 and guf!='>':
 				bingtitulo=bingtitulo+guf
-		#print bingtitulo
+		
 		bingtitulos[relog]=bingtitulo
-
-
-		#print link.text
 		bingtextos[relog]=link.text
 		
 		
@@ -795,10 +670,6 @@ for link in soup1.findAll(attrs={'class' : "b_algo"}):
 	
 	
 	relog=relog+1				
-		
-	#file2.write('________________________________________________________________________'+'\n')
-
-
 print bingpaginas
 print '\n'
 print bingtitulos
@@ -806,31 +677,7 @@ print '\n'
 print bingtextos
 
 
-###################################################################################################################
-###################################################################################################################
-###################################################################################################################
-
-
-
-###				###		###################		###				###		###################		###################
-###				###		###				###		###				###		###				###		###				###
-###				###		###				###		###				###		###				###		###				###
-###				###		###				###		###				###		###				###		###				###
-###################		###				###		###				###		###				###		###				###
-        ###				###################		###################		###				###		###				###
-        ###				###				###		###				###		###				###		###				###
-        ###				###				###		###				###		###				###		###				###
-        ###				###				###		###				###		###				###		###				###
-        ###				###				###		###				###		###				###		###				###
-        ###				###				###		###				###		###				###		###				###
-        ###				###				###		###				###		###				###		###				###
-        ###				###				###		###				###		###################		###################
-
-
-
-###################################################################################################################
-###################################################################################################################
-####################################################################################################################
+#
 print '\n'
 print 'BUSCANDO EN YAHOO ||||||||||||||||||||||||||||||||||||'+'\n'
 
@@ -841,17 +688,12 @@ for a in obag:
 	else:
 		yahoob=yahoob+a
 
-###########################################################################################
-
 br=Browser()
 br.set_handle_robots(False)
 br.addheaders=[('User-agent','Chrome')]
 br.open('https://espanol.search.yahoo.com/search?cs=bz&p='+yahoob+'&fr=fp-tts-706&fr2=ps&woeid=376229&fp=1')
 br.submit
-
 yahoohtml=''
-
-
 soupyahoo = BeautifulSoup(br.response().read())
 for link in (soupyahoo.find_all('a')):
 	yahoohtml=yahoohtml+(str(link.get('href'))+'\n')
@@ -904,24 +746,15 @@ for mza in yahoohtml:
 	else:
 		acumulador=acumulador+mza
 
-
-
-###############################################################################################################
 yahoopaginas=['']*20
 yahootitulos=['']*20
 yahootextos=['']*20
-
-
 br.open(str(yahooenlace1))
-
-
 yahooex=''
 yahoocont=0
 yahoosalida=''
-
 yahoosalida1=''
 yahookey=0
-
 mm=''
 yahooguia=0
 souphtml=BeautifulSoup(br.response().read())
@@ -948,11 +781,7 @@ for link in souphtml.findAll(attrs={'class' : "yschttl spt"}):
 					yahoopaginas[yahooguia]='-'
 					break
 				
-					
-
-
-
-			
+				
 			yahoocont=0
 			mm=''
 			yahoosalida=''
@@ -967,7 +796,7 @@ for link in souphtml.findAll(attrs={'class' : "yschttl spt"}):
 		if yahookey==1 and z!='>':
 			yahoosalida1=yahoosalida1+z
 
-	#print yahoosalida1
+	
 	yahootitulos[yahooguia]=yahoosalida1
 
 	yh1=unicode(' Búsqueda de video ','utf-8')
@@ -980,7 +809,7 @@ for link in souphtml.findAll(attrs={'class' : "yschttl spt"}):
 			yh2=1
 		if yh2==1 and yh!='-':
 			yh3=yh3+yh
-	#print yh3
+	
 	yh4=unicode(yh3,'utf-8')
 	if yh4==yh1:
 		yahootextos[yahooguia]='-'
@@ -1012,7 +841,6 @@ textokey=0
 yahootextsalida=''
 yahoopaso=0
 for link in souphtml.findAll(attrs={'class' : "abstr"}):
-	#print link
 	
 	yahoosalidatexto=str(link) 
 	for x in yahoosalidatexto:
@@ -1023,7 +851,7 @@ for link in souphtml.findAll(attrs={'class' : "abstr"}):
 		if textokey==1 and x!='>':
 			yahootextsalida=yahootextsalida+x
 
-	#print yahootextsalida+'\n'
+	
 
 	if yahootextos[yahoopaso]=='-':
 		yahootextos[yahoopaso+1]=yahootextsalida
