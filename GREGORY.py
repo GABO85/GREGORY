@@ -10,8 +10,7 @@ import os,sys
 busc=raw_input('QUE DESEAS BUSCAR?'+'\n')
 
 inicio1=timeit.default_timer()
-print '___________________________________________________________'
-print 'BUSCANDO EN GOOGLE  ||||||||||||||||||||||||||||||||||'+'\n'
+print 'BUSCANDO EN GOOGLE  ........'+'\n'
 if busc=='pythan':
 	obag='.python'
 else:
@@ -555,7 +554,7 @@ else:
 print '\n'
 print googletextosfin[:]
 print '\n'
-print 'BUSCANDO EN bing|||||||||||||||||||||||||||||||||||||||||||||||||||||||'+('\n'*3)
+print 'BUSCANDO EN bing.......'+('\n'*3)
 
 br.open( "http://bing.com" )
 br.select_form( nr=0 )
@@ -679,7 +678,7 @@ print bingtextos
 
 #
 print '\n'
-print 'BUSCANDO EN YAHOO ||||||||||||||||||||||||||||||||||||'+'\n'
+print 'BUSCANDO EN YAHOO .........'+'\n'
 
 yahoob=''
 for a in obag:
